@@ -13,7 +13,7 @@ app.add_middleware(
 )
 
 @app.get("/",status_code=status.HTTP_200_OK)
-async def get_info():
+def get_info():
     return {
         "email": "obiekwufredrick519@gmail.com",
         "current_datetime": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), 
