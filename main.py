@@ -1,5 +1,5 @@
-from fastapi import FastAPI
-from datetime import datetime
+from fastapi import FastAPI, status 
+from datetime import datetime,timezone
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -12,10 +12,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
+@app.get("/",status_code=status.HTTP_200_OK)
 async def get_info():
     return {
         "email": "obiekwufredrick519@gmail.com",
-        "current_datetime": datetime.utcnow().isoformat() + "Z",
+        "current_datetime": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), 
         "github_url": "https://github.com/Fredrickszn06/HNG-FASTAPI-0",
     }
